@@ -7,4 +7,4 @@ Its variable parameters are:
 - arm length 
 - launch angle
 
-![](catapult.svg)
+![alt text](https://github.com/MuttiGiacomo/tpa-homework1/blob/main/catapult.svg?raw=true)
