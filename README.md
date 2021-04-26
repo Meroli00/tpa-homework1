@@ -7,4 +7,4 @@ Its variable parameters are:
 - arm length 
 - launch angle
 
-![alt text](catapult.svg)
+![](catapult.svg)
