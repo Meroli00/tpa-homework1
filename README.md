@@ -6,3 +6,5 @@ Its variable parameters are:
 - wheel radius
 - arm length 
 - launch angle
+
+![alt text](catapult.svg)
