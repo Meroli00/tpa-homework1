@@ -6,5 +6,4 @@ Its variable parameters are:
 - wheel radius
 - arm length 
 - launch angle
-
 ![alt text](https://github.com/MuttiGiacomo/tpa-homework1/blob/main/Catapult.svg)
