@@ -1,13 +1,13 @@
+using namespace std;
+
 #include <mgCatapult.h>
 #include <iostream>
 #include <string>
 
-using namespace std;
 
 int main(){
     
     int risp;
-    string catapultSVG;
     mgCatapult* catapulta;
 
 
@@ -43,4 +43,5 @@ int main(){
             break;
         }
     }
+return 0;
 }
