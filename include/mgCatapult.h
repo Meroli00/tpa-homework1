@@ -25,9 +25,10 @@ struct mgCatapult
     }
         
 };
+void mg_filew(string cat);  //scrive su file il file la stringa che costituisce l'svg
 std::string mg_catSVG(mgCatapult* catapulta);    //costruisce la stringa
-int mg_check(mgCatapult* catapulta); 
-void mg_init_cat(mgCatapult* catapulta);
+int mg_check(mgCatapult* catapulta);    //controlla i vincoli
+void mg_init_cat(mgCatapult* catapulta);    //crea una nuova catapulta inizializzando nuove variabili
 
 
 #endif
