@@ -9,7 +9,7 @@ int main(){
     
     int risp;
     mgCatapult* catapulta;
-
+    string cat;
 
     cout << "Choose an option:" << endl;
     cout << "[1] Create a new catapult" << endl;
@@ -24,10 +24,11 @@ int main(){
         switch (risp)
         {
         case 1:
-            //lancia fun per creare un svg
+            mg_init_cat(catapulta);
+            cat = mg_catSVG(catapulta);
             break;
         case 2:
-            //lancia fun salvare il file svg
+            mg_filew(cat);
             break;
         case 3:
             //lancia fun per eliminare un file svg
