@@ -1,23 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" >
 
 	<rect x="0" y="0" width="800" height="600" style="fill:white;stroke:white;stroke-width:2" />
-	<rect x="50" y="320" width="500" height="20" style="fill:brown;stroke:black;stroke-width:2" />
-  	<circle cx="150" cy="350" r="40" stroke="black" stroke-width="9" fill="brown
+	<rect x="50" y="320" width="500" height="20" style="fill:#a5532a;stroke:black;stroke-width:2" />
+  	<circle cx="150" cy="350" r="40" stroke="black" stroke-width="9" fill="#a5532a
    " />
    <g transform="rotate(20,400,290)">
-   		<rect x="10" y="280" width="400" height="20" 	style="fill:brown;stroke:black;stroke-width:2" />
-        <rect x="10" y="280" width="80" height="35" 	style="fill:brown;stroke:black;stroke-width:2" />
+   		<rect x="10" y="280" width="400" height="20" 	style="fill:#a5532a;stroke:black;stroke-width:2" />
+        <rect x="10" y="280" width="80" height="35" 	style="fill:#a5532a;stroke:black;stroke-width:2" />
         <line x1="10" y1="240" x2="410" y2="240" style="stroke:rgb(0,0,0);stroke-width:1" />
         <text x="205" y="230" fill="black">l</text>
    </g>
-   <rect x="300" y="260" width="200" height="60" style="fill:brown;stroke:black;stroke-width:2" />
-    <circle cx="450" cy="350" r="40" stroke="black" stroke-width="9" fill="brown" />
+   <line x1="570" y1="320" x2="570" y2="390" style="stroke:rgb(0,0,0);stroke-width:1" />
+    <line x1="560" y1="320" x2="560" y2="260" style="stroke:rgb(0,0,0);stroke-width:1" />
+   <rect x="300" y="260" width="200" height="60" style="fill:#a5532a;stroke:black;stroke-width:2" />
+    <circle cx="450" cy="350" r="40" stroke="black" stroke-width="9" fill="#a5532a" />
     <line x1="210" y1="390" x2="210" y2="350" style="stroke:rgb(0,0,0);stroke-width:1" />    
     
   	<text x="220" y="375" fill="black">r</text>
     <text x="220" y="285" fill="black">alfa</text>
-
+    <text x="580" y="355" fill="black">hb</text>
+	<text x="570" y="290" fill="black">hc</text>
    
    
    <circle cx="400" cy="290" r="3" stroke="black" stroke-width="5" fill="white" /> 
