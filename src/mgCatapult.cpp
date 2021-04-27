@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <fstream>
 #include <mgCatapult.h>
 
 #define _USE_MATH_DEFINES
@@ -28,12 +29,45 @@ int mg_check(mgCatapult* catapulta){
     return val;
 }
 
-string mg_ctSVG(){
+string mg_catSVG(mgCatapult* catapulta){
+    string cat;
+    cat = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"600\">\n\n";
+    cat += "<rect x=\"0\" y=\"0\" width=\"800\" height=\"600\" style=\"fill:white;stroke:white;stroke-width:2\" />\n";
+    cat += "<rect x=\"50\" y=\"" + to_string(390 - catapulta->hbase) + "\" width=\"500\" height=\"20\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n\n";
+    cat += "<circle cx=\"150\" cy=\"350\" r=\"" + to_string(catapulta->rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n\n";
+    cat += "<g transform=\"rotate(" + to_string(catapulta->alfa) + "," + to_string(390 - catapulta->hbase + (catapulta->hbox/2)) + ",290)\">\n";
+    cat += "<rect x=\"" + to_string(400 - catapulta->arm) + "\" y=\"280\" width=\"" + to_string(catapulta->arm) + "\" height=\"20\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n";
+    cat += "<rect x=\"" + to_string(400 - 20 - catapulta->arm) + "\" y=\"280\" width=\"80\" height=\"35\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n";
+    cat += "</g>\n";
+    cat += "<rect x=\"300\" y=\"" + to_string(390 - catapulta->hbase - (catapulta->hbox)/2) + "\" width=\"200\" height=\"60\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n";
+    cat += "<circle cx=\"450\" cy=\"350\" r=\"" + to_string(catapulta->rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n";
+    cat += "<circle cx=\"" + to_string(390 - catapulta->hbase + (catapulta->hbox/2)) + "\" cy=\"290\" r=\"3\" stroke=\"black\" stroke-width=\"5\" fill=\"white\" />\n";
+    cat += "</svg>\n";
 
-
-
+    return cat;
 }
 
+void mg_filew(string cat){
+
+    if(cat == "") {
+        cout << "Something went werong during the svg generation";
+    }
+    if(cat != ""){
+        string nome;
+
+        cout << "Write file name (es: catcatapult.svg)" << endl;
+        cin >> nome;
+
+        // Create and open a text file
+        ofstream MyFile(nome);
+
+        // Write to the file
+        MyFile << cat;
+
+        // Close the file
+        MyFile.close();
+    }
+}
 
 
 
