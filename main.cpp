@@ -1,6 +1,6 @@
 using namespace std;
 
-#include <mgCatapult.h>
+#include "mgCatapult.h"
 #include <iostream>
 #include <string>
 
@@ -14,13 +14,14 @@ int main(){
     cout << "Choose an option:" << endl;
     cout << "[1] Create a new catapult" << endl;
     cout << "[2] Save catapult as a svg file" << endl;
-    cout << "[3] Delete a previously created catapult" << endl;
-    cout << "[4] Load a catapult" << endl;
-    cout << "[5] Exit the program" << endl;  
+    cout << "[3] Load a catapult" << endl;
+    cout << "[4] modify a previously created catapult" << endl;
+    cout << "[5] print the current svg file text" << endl;
+    cout << "[6] Exit the program" << endl;  
 
     cin >> risp;
 
-    while(risp!=5){
+    while(risp!=6){
         switch (risp)
         {
         case 1:
@@ -28,15 +29,21 @@ int main(){
             cat = mg_catSVG(catapulta);
             break;
         case 2:
-            mg_filew(cat);
+            mg_file_w(cat);
             break;
         case 3:
-            //lancia fun per eliminare un file svg
+            cat = mg_file_r();
             break;
         case 4:
-            //lancia fun per caricare un file svg
+            //lancia fun per modificare un file svg
             break;
         case 5:
+            cout << "the current svg text is: " << endl;
+            if (cat==""){
+                cout << "the file is empty, or you havent selected/created a file yet";
+            };
+            cout << cat << endl;
+        case 6:
             cout << "Program ended" << endl;
             break;
         default:
