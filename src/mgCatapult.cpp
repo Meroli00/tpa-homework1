@@ -1,32 +1,86 @@
-#include <iostream>
 #include <math.h>
-#include <fstream>
-#include <mgCatapult.h>
+#include <iostream>
+#include <string>
+#include "mgCatapult.h"
 
 #define _USE_MATH_DEFINES
 using namespace std;
+int val = 0;
 
+void mg_set_rad(mgCatapult* catapulta){
+    cout << "choose a new value for the wheel radius: " << endl;
+    cin >> catapulta->rad;
+    mg_check(catapulta);
+    val=0;
+}
+void mg_set_hbase(mgCatapult* catapulta){
+    cout << "choose a new value for the bed hight: " << endl;
+    cin >> catapulta->hbase;
+    mg_check(catapulta);
+    val=0;
+}
+void mg_set_hbox(mgCatapult* catapulta){
+    cout << "choose a new value for the box hight: " << endl;
+    cin >> catapulta->hbox;
+    mg_check(catapulta);
+    val=0;
+}
+void mg_set_arm(mgCatapult* catapulta){
+    cout << "choose a new value for the arm length: " << endl;
+    cin >> catapulta->arm;
+    mg_check(catapulta);
+    val=0;
+}
+void mg_set_alfa(mgCatapult* catapulta){
+    cout << "choose a new value for the launch angle: " << endl;
+    cin >> catapulta->alfa;
+    mg_check(catapulta);
+    val=0;
+}
 int mg_check(mgCatapult* catapulta){
-    int val =0 ;
     float alfamax = 90 + atan2f(catapulta->hbox , 500 ) * 180 / M_PI;
     float hbmax = 2*(catapulta->rad);
-    if (catapulta -> rad > 0 && 
-        catapulta -> hbase > 0 &&
-        catapulta -> hbox > 0 &&
-        catapulta -> alfa > 0 &&
-        catapulta -> arm > 0 )
-    {val=1;}
-    
-    
-    if (catapulta->alfa > alfamax){
-        val=2;
-        cout << "the angle of launch is too big, it should be less than " << alfamax << endl;
-    }
+    do{
+        if (catapulta -> rad < 0){
+            cout << "all values must be grater than 0" << endl;
+            mg_set_rad(catapulta);
+        };
+        if (catapulta -> hbox < 0){
+            cout << "all values must be grater than 0" << endl;
+            mg_set_hbox(catapulta);
+        };
+        if (catapulta -> hbase < 0){
+            cout << "all values must be grater than 0" << endl;
+            mg_set_hbase(catapulta);
+        };
+        if (catapulta -> arm < 0){
+            cout << "all values must be grater than 0" << endl;
+            mg_set_arm(catapulta);
+        };
+        if (catapulta -> alfa < 0){
+            cout << "all values must be grater than 0" << endl;
+            mg_set_alfa(catapulta);
+        };
+        
+        if (catapulta->alfa > alfamax){
+            val=1;
+            cout << "the angle of launch is too big, it should be less than " << alfamax << endl;
+            mg_set_alfa(catapulta);
+        };
 
-    if (catapulta->hbase > hbmax){
-        val=3;
-        cout << "either the radius is too small or the hight of the base iss too big, change at least one " << endl;}
-    return val;
+        if (catapulta->hbase > hbmax){
+            val=1;
+            int k;
+            cout << "either the radius is too small or the hight of the base iss too big, change at least one " << endl;
+            cin >> k;
+            do{
+                cout << "digit [1] to modify the radius, [2] to modify the base hight" << endl;
+                if (k==1){mg_set_rad(catapulta);}
+                if (k==2){mg_set_hbase(catapulta);}
+            }while(k!=1 & k!=2);            
+        };
+        return val;
+    }while(val!=0);
 }
 
 string mg_catSVG(mgCatapult* catapulta){
@@ -47,19 +101,19 @@ string mg_catSVG(mgCatapult* catapulta){
     return cat;
 }
 
-void mg_filew(string cat){
+void mg_file_w(string cat){
 
     if(cat == "") {
         cout << "Something went werong during the svg generation";
     }
     if(cat != ""){
-        string nome;
+        string filew;
 
-        cout << "Write file name (es: catcatapult.svg)" << endl;
-        cin >> nome;
+        cout << "Type file name (es: catcatapult.svg)" << endl;
+        cin >> filew;
 
         // Create and open a text file
-        ofstream MyFile(nome);
+        ofstream MyFile(filew);
 
         // Write to the file
         MyFile << cat;
@@ -69,7 +123,22 @@ void mg_filew(string cat){
     }
 }
 
+string mg_file_r(){
 
+    string newstring,filer;
+
+    cout << "Type file name (es: catcatapult.svg)" << endl;
+    cin >> filer;
+    // Read from the text file
+    ifstream MyReadFile(filer);
+    
+    // Use a while loop together with the getline() function to read the file line by line
+    while (getline (MyReadFile, newstring)) {
+        // Output the text from the file
+        cout << newstring;
+    }
+    return newstring;
+}
 
 void mg_init_cat(mgCatapult* catapulta){
     while(true){
