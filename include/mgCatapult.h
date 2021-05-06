@@ -3,7 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <streambuf>
+#include <sstream>
 
+ 
 struct mgCatapult
 {
     float arm;
@@ -23,12 +27,18 @@ struct mgCatapult
     void print()const{
         fprintf(stdout,"Braccio: %d\nAlfa: %d\nAlt. cassone: %d\n, Alt. base: %d\nRaggio: %d",arm, alfa,hbox,hbase,rad);
     }
-        
 };
-void mg_filew(string cat);  //scrive su file il file la stringa che costituisce l'svg
-std::string mg_catSVG(mgCatapult* catapulta);    //costruisce la stringa
-int mg_check(mgCatapult* catapulta);    //controlla i vincoli
-void mg_init_cat(mgCatapult* catapulta);    //crea una nuova catapulta inizializzando nuove variabili
+
+void mg_set_rad(mgCatapult* catapulta);     //
+void mg_set_hbase(mgCatapult* catapulta);   //
+void mg_set_hbox(mgCatapult* catapulta);    //  fun che permettono di modificare le dimensioni di un pezzo
+void mg_set_arm(mgCatapult* catapulta);     //   
+void mg_set_alfa(mgCatapult* catapulta);    //  
+void mg_file_w(std::string cat);  // scrive su file la stringa che costituisce l'svg
+std::string mg_file_r();    // legge da file una stringa 
+std::string mg_catSVG(mgCatapult* catapulta);    // costruisce la stringa
+int mg_check(mgCatapult* catapulta);    // controlla i vincoli
+void mg_init_cat(mgCatapult* catapulta);    // crea una nuova catapulta inizializzando nuove variabili
 
 
 #endif
