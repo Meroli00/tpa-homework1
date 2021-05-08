@@ -9,7 +9,7 @@ Its variable parameters are:
 - hight of the structure holding the arm
 - hight of the base
 
-![](https://github.com/MuttiGiacomo/tpa-homework1/blob/main/Catapult.svg)
+![](https://github.com/MuttiGiacomo/tpa-homework1/blob/main/Catapult_quotato.svg)
 
 Based uppon the variables stated above there are several constraints:
 - all dimensions must be >0 and < of a certain max value
