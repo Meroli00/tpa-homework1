@@ -4,9 +4,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <streambuf>
-#include <sstream>
 
+using namespace std;
  
 struct mgCatapult
 {
@@ -16,8 +15,8 @@ struct mgCatapult
     float hbase;
     float rad;
 
-    mgCatapult(/*float _arm, float _alfa, float _hbox, float _hbase, float _rad*/){
-        arm = 0;
+    //mgCatapult(/*float _arm, float _alfa, float _hbox, float _hbase, float _rad*/){
+    /*    arm = 0;
         alfa = 0;
         hbox = 0;
         hbase = 0;
@@ -26,9 +25,14 @@ struct mgCatapult
 
     void print()const{
         fprintf(stdout,"Braccio: %d\nAlfa: %d\nAlt. cassone: %d\n, Alt. base: %d\nRaggio: %d",arm, alfa,hbox,hbase,rad);
-    }
+    }*/
 };
-
+void mg_parce_cat(string cat, mgCatapult* catapulta);
+float mg_find_rad(string cat, mgCatapult* Ncatapulta);
+float mg_find_alfa(string cat, mgCatapult* Ncatapulta);
+float mg_find_hbase(string cat, mgCatapult* Ncatapulta);
+float mg_find_hbox(string cat, mgCatapult* Ncatapulta);
+float mg_find_arm(string cat, mgCatapult* Ncatapulta);
 void mg_set_rad(mgCatapult* catapulta);     //
 void mg_set_hbase(mgCatapult* catapulta);   //
 void mg_set_hbox(mgCatapult* catapulta);    //  fun che permettono di modificare le dimensioni di un pezzo
