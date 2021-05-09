@@ -25,8 +25,20 @@ int main(){
         switch (risp)
         {
         case 1:
+            int m;
             mg_init_cat(catapulta);
-            cat = mg_catSVG(catapulta);
+             while( m!=1 && m!=2 ){
+                cout << "Select an option:" << endl;
+                cout << "[1] svg without mesures" << endl;
+                cout << "[2] svg with mesures" << endl;
+                cin >> m ;
+                if (m == 1){
+                    cat = mg_catSVG(catapulta);
+                };
+                if (m == 2){
+                    cat = mg_catSVG_quotato(catapulta);
+                }
+            }
             break;
         case 2:
             mg_file_w(cat);
