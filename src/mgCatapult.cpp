@@ -102,12 +102,42 @@ string mg_catSVG(mgCatapult* catapulta){
     cat += "<rect x=\"250\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase) + "\" width=\"500\" height=\"20\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n\n"; // base
     cat += "<g transform=\"rotate(" + to_string( 90 - catapulta->alfa) + ",600," + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + ")\">\n"; // sdr ruotato
     cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(440 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"" + to_string(catapulta->arm) + "\" height=\"20\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // braccio
-    cat += "<rect x=\"" + to_string(610 - 20 - catapulta->arm) + "\" y=\"" + to_string(440 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"80\" height=\"35\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // estremita braccio
+    cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(440 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"80\" height=\"35\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // estremita braccio
     cat += "</g>\n";
     cat += "<rect x=\"500\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase - catapulta->hbox) + "\" width=\"200\" height=\"" + to_string(catapulta->hbox) + "\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n";// cassone
     cat += "<circle cx=\"350\" cy=\"450\" r=\"" + to_string(catapulta->rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n\n"; // ruota sx
     cat += "<circle cx=\"650\" cy=\"450\" r=\"" + to_string(catapulta->rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n"; // ruota dx
     cat += "<circle cx=\"600\" cy=\"" + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" r=\"3\" stroke=\"black\" stroke-width=\"5\" fill=\"white\" />\n"; // perno del braccio
+    cat += "</svg>\n";
+
+    return cat;
+}
+
+string mg_catSVG_quotato(mgCatapult*catapulta){
+    string cat;
+    //oggetti
+    cat = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"600\">\n\n"; // intestazione
+    cat += "<rect x=\"0\" y=\"0\" width=\"800\" height=\"600\" style=\"fill:white;stroke:white;stroke-width:2\" />\n"; // sfondo bianco
+    cat += "<rect x=\"250\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase) + "\" width=\"500\" height=\"20\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n\n"; // base
+    cat += "<g transform=\"rotate(" + to_string( 90 - catapulta->alfa) + ",600," + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + ")\">\n"; // sdr ruotato
+    cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(440 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"" + to_string(catapulta->arm) + "\" height=\"20\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // braccio
+    cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(440 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"80\" height=\"35\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // estremita braccio
+    cat += "</g>\n";
+    cat += "<rect x=\"500\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase - catapulta->hbox) + "\" width=\"200\" height=\"" + to_string(catapulta->hbox) + "\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n";// cassone
+    cat += "<circle cx=\"350\" cy=\"450\" r=\"" + to_string(catapulta->rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n\n"; // ruota sx
+    cat += "<circle cx=\"650\" cy=\"450\" r=\"" + to_string(catapulta->rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n"; // ruota dx
+    cat += "<circle cx=\"600\" cy=\"" + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" r=\"3\" stroke=\"black\" stroke-width=\"5\" fill=\"white\" />\n"; // perno del braccio
+
+    //quotature
+    cat += "<g transform=\"rotate(" + to_string( 90 - catapulta->alfa) + ",600," + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + ")\">\n"; 
+    cat += "<line x1=\"" + to_string(610 - catapulta->arm) + "\" y1=\"" + to_string(410 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" x2=\"610\" y2=\"" + to_string(410 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" style=\"stroke:rgb(0,0,0);stroke-width:1\" />\n";
+    cat += "<text x=\"" + to_string(570 - catapulta->arm/2) + "\" y=\"" + to_string(400 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" fill=\"black\">" + to_string(catapulta->arm)  + " cm" +  "</text>\n";
+    cat += "</g>\n";
+    cat += "<text x=\"630\" y=\"" + to_string(400 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" fill=\"black\">" + to_string(catapulta->alfa)  + " gradi" +  "</text>\n";
+    cat += "<line x1=\"200\" y1=\"" + to_string(450 + catapulta->rad - catapulta->hbase) + "\" x2=\"200\" y2=\"" + to_string(450 + catapulta->rad) + "\" style=\"stroke:rgb(0,0,0);stroke-width:1\" />\n";
+    cat += "<text x=\"100\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase/2) + "\" fill=\"black\">" + to_string(catapulta->hbase)  + " cm" +  "</text>\n";
+    cat += "<line x1=\"180\" y1=\"" + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox)) + "\" x2=\"180\" y2=\"" + to_string(450 + catapulta->rad - catapulta->hbase) + "\" style=\"stroke:rgb(0,0,0);stroke-width:1\" />\n";
+	cat += "<text x=\"80\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase - catapulta->hbox/2) + "\" fill=\"black\">" + to_string(catapulta->hbox) + " cm" +   "</text>\n";
     cat += "</svg>\n";
 
     return cat;
