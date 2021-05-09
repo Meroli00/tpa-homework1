@@ -40,6 +40,7 @@ void mg_set_arm(mgCatapult* catapulta);     //
 void mg_set_alfa(mgCatapult* catapulta);    //  
 void mg_file_w(std::string cat);  // scrive su file la stringa che costituisce l'svg
 std::string mg_file_r();    // legge da file una stringa 
+std::string mg_catSVG_quotato(mgCatapult*catapulta);
 std::string mg_catSVG(mgCatapult* catapulta);    // costruisce la stringa
 int mg_check(mgCatapult* catapulta);    // controlla i vincoli
 void mg_init_cat(mgCatapult* catapulta);    // crea una nuova catapulta inizializzando nuove variabili
