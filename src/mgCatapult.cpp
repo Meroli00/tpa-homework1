@@ -1,7 +1,8 @@
+#include "C:\Users\giaco\Desktop\compito 1\include/mgCatapult.h"
+#include "C:\Users\giaco\Desktop\compito 1\include\Car.h"
 #include <math.h>
 #include <iostream>
 #include <string>
-#include "mgCatapult.h"
 
 #define _USE_MATH_DEFINES
 
@@ -89,7 +90,8 @@ int mg_check(mgCatapult* catapulta){
                 cin >> k;
                 if (k==1){mg_set_rad(catapulta);}
                 if (k==2){mg_set_hbase(catapulta);}
-            }while(k!=1 & k!=2);            
+            }while(k!=1 & k!=2);      
+        k=0;      
         };
         return val;
     }while(val!=0);
@@ -102,7 +104,7 @@ string mg_catSVG(mgCatapult* catapulta){
     cat += "<rect x=\"250\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase) + "\" width=\"500\" height=\"20\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n\n"; // base
     cat += "<g transform=\"rotate(" + to_string( 90 - catapulta->alfa) + ",600," + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + ")\">\n"; // sdr ruotato
     cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(440 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"" + to_string(catapulta->arm) + "\" height=\"20\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // braccio
-    cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(440 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"80\" height=\"35\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // estremita braccio
+    cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(425 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"80\" height=\"35\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // estremita braccio
     cat += "</g>\n";
     cat += "<rect x=\"500\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase - catapulta->hbox) + "\" width=\"200\" height=\"" + to_string(catapulta->hbox) + "\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n";// cassone
     cat += "<circle cx=\"350\" cy=\"450\" r=\"" + to_string(catapulta->rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n\n"; // ruota sx
@@ -121,7 +123,7 @@ string mg_catSVG_quotato(mgCatapult*catapulta){
     cat += "<rect x=\"250\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase) + "\" width=\"500\" height=\"20\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n\n"; // base
     cat += "<g transform=\"rotate(" + to_string( 90 - catapulta->alfa) + ",600," + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + ")\">\n"; // sdr ruotato
     cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(440 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"" + to_string(catapulta->arm) + "\" height=\"20\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // braccio
-    cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(440 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"80\" height=\"35\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // estremita braccio
+    cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(425 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"80\" height=\"35\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // estremita braccio
     cat += "</g>\n";
     cat += "<rect x=\"500\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase - catapulta->hbox) + "\" width=\"200\" height=\"" + to_string(catapulta->hbox) + "\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n";// cassone
     cat += "<circle cx=\"350\" cy=\"450\" r=\"" + to_string(catapulta->rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n\n"; // ruota sx
@@ -142,11 +144,44 @@ string mg_catSVG_quotato(mgCatapult*catapulta){
 
     return cat;
 }
+/*
+string mg_deviceSVG(mgCatapult* catapulta, string svg){
+    string cat;
+    //catapulta
+    cat = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"600\">\n\n"; // intestazione
+    cat += "<rect x=\"0\" y=\"0\" width=\"800\" height=\"600\" style=\"fill:white;stroke:white;stroke-width:2\" />\n"; // sfondo bianco
+    cat += "<rect x=\"250\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase) + "\" width=\"500\" height=\"20\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n\n"; // base
+    cat += "<g transform=\"rotate(" + to_string( 90 - catapulta->alfa) + ",600," + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + ")\">\n"; // sdr ruotato
+    cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(440 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"" + to_string(catapulta->arm) + "\" height=\"20\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // braccio
+    cat += "<rect x=\"" + to_string(610 - catapulta->arm) + "\" y=\"" + to_string(425 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" width=\"80\" height=\"35\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // estremita braccio
+    cat += "</g>\n";
+    cat += "<rect x=\"500\" y=\"" + to_string(450 + catapulta->rad - catapulta->hbase - catapulta->hbox) + "\" width=\"200\" height=\"" + to_string(catapulta->hbox) + "\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n";// cassone
+    cat += "<circle cx=\"350\" cy=\"450\" r=\"" + to_string(catapulta->rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n\n"; // ruota sx
+    cat += "<circle cx=\"650\" cy=\"450\" r=\"" + to_string(catapulta->rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n"; // ruota dx
+    cat += "<circle cx=\"600\" cy=\"" + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + "\" r=\"3\" stroke=\"black\" stroke-width=\"5\" fill=\"white\" />\n"; // perno del braccio
+
+    //macchina
+    cat += "<g transform=\"rotate(" + to_string( 90 - catapulta->alfa) + ",600," + to_string(450 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + ") translate(" + to_string(550 - catapulta->arm) + "," + to_string(330 + catapulta->rad - catapulta->hbase - (catapulta->hbox/2)) + ") scale(0.25)\">\n";
+    cat += svg;
+    */
+    /*cat += "<rect x='225.000000' y='260.000000' rx='10' ry='10' width='350.000000' height='80.000000' style='stroke-width:3;stroke:rgb(0,0,0)' fill='red'/>\n";
+	cat += "<circle cx='295.000000' cy='340.000000' r='40.000000' stroke='black' stroke-width='3' fill='black'/>\n";
+	cat += "<circle cx='295.000000' cy='340.000000' r='25.000000' stroke='black' stroke-width='3' fill='gray'/>\n";
+	cat += "<circle cx='505.000000' cy='340.000000' r='40.000000' stroke='black' stroke-width='3' fill='black'/>\n";
+	cat += "<circle cx='505.000000' cy='340.000000' r='25.000000' stroke='black' stroke-width='3' fill='gray'/>\n";
+	cat += "<polygon points='285.000336,260.000000 325.000000,199.999847 425.000000,199.999847 425.000000,260.000000 285.000336,260.000000' style='fill:red;stroke:black;stroke-width:5'/>\n";
+	cat += "<polygon points='425.000000,199.999847 505.000000,260.000000 425.000000,260.000000' style='fill:lightblue;stroke:black;stroke-width:5' />\n";
+	cat += "<rect x='235.000000' y='230.000000' width='20.000000' height='29.999996' style='stroke-width:3;stroke:rgb(0,0,0)' fill='red'/>\n";
+    cat += "</a>\n";
+    cat += "</svg>\n";*/
+  //  return cat;
+//}
+
 
 void mg_file_w(string cat){
 
     if(cat == "") {
-        cout << "Something went werong during the svg generation";
+        cout << "The file is empty or you haven't selected/created a file yet" << endl;
     }
     if(cat != ""){
         string filew;
@@ -185,10 +220,23 @@ string mg_file_r(){
     return nuovastringa;
 }
 
+void mg_destroy(){
+    int status;
+    char fileName[20];
+    cout << "Enter the Name of File you want to delete: ";
+    cin >> fileName;
+    status = remove(fileName);
+    if(status==0)
+        cout<<"\nFile Deleted Successfully!";
+    else
+        cout<<"\nErorr Occurred!";
+    cout<<endl;
+}
+
 void mg_init_cat(mgCatapult* catapulta){
     
         cout << "define wheel radius ( 20 - 100 ): ";
-        cin >> ( catapulta -> rad );
+        cin >>  catapulta -> rad ;
         cout << "define bed hight ( wheel radius - wheel diameter): ";
         cin >> catapulta -> hbase;
         cout << "define box hight ( 0 - 100 ): ";
@@ -243,8 +291,8 @@ float mg_find_alfa(string cat, mgCatapult* catapulta){
 float mg_find_hbase(string cat, mgCatapult* catapulta){
     float true_val;
     string valore,target;
-    target = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"600\">\n\n"; // intestazione
-    target += "<rect x=\"0\" y=\"0\" width=\"800\" height=\"600\" style=\"fill:white;stroke:white;stroke-width:2\" />\n"; // sfondo bianco
+    target = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"600\">"; // intestazione
+    target += "<rect x=\"0\" y=\"0\" width=\"800\" height=\"600\" style=\"fill:white;stroke:white;stroke-width:2\" />"; // sfondo bianco
     target += "<rect x=\"250\" y=\"";
     size_t found_hbase = target.size() ; //evito di utilizzare cat.find(target) perchè essendo il primo valore di interesse,
                                         // avrà sempre la stessa posizione nella stringa 
@@ -272,7 +320,7 @@ float mg_find_hbox(string cat, mgCatapult* catapulta){ //               --------
 float mg_find_arm(string cat, mgCatapult* catapulta){
     string valore,target;
     float true_val;
-    target = "style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; 
+    target = "style=\"fill:#a5532a;stroke:black;stroke-width:2\" />"; 
     target += "<rect x=\"";
     size_t found_arm = cat.find(target) + target.size() ;
     if (found_arm != string::npos){
