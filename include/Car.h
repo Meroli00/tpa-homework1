@@ -129,7 +129,7 @@ int coca_write(std::string svg);
 std::string coca_read();
 float coca_parse(std::string svg, std::string parse, int & partenza, std::string fine);
 void coca_parse_device(coca_device* macch);
-
+void coca_parse_deviceV2(std::string svg, coca_device* macch);
 // Funzione che modifica i parametri della macchina
 int coca_set_menu();
 coca_device* coca_set_param(coca_device* macch, std::string svg, int* pscelta ,int* pdiametro, int* px, int* check);
