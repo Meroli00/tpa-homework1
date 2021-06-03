@@ -7,21 +7,22 @@ set(CMAKE_CXX_STANDARD 17)
 
 
 # EXECUTABLE SECTION
-add_executable(DEVICE mainDEVICE.cpp)
+add_executable(DEVICE maindevice.cpp)
 target_include_directories(DEVICE PRIVATE include)
 # Class A is not a library: its source file needs to be included in the target sources
 target_sources(DEVICE PRIVATE src/mgCatapult.cpp)
-target_sources(DEVICE PRIVATE src/Car.cpp)
 target_link_libraries(DEVICE)
 
 # EXECUTABLE SECTION
-add_executable(MACHINE mainMACHINE.cpp)
+add_executable(MACHINE mainmachine.cpp)
 target_include_directories(MACHINE PRIVATE include)
 # Class A is not a library: its source file needs to be included in the target sources
 target_sources(MACHINE PRIVATE src/mgCatapult.cpp)
-target_sources(DEVICE PRIVATE src/mgMachine.cpp)
+target_sources(MACHINE PRIVATE src/mgMachine.cpp)
 target_sources(MACHINE PRIVATE src/Car.cpp)
 target_link_libraries(MACHINE)
+
+file(COPY svg DESTINATION ${CMAKE_BINARY_DIR}) #copia la cartella svg all'interno della cartella build
 
 # TESTS SECTION
 # Basically makes CMake read the CMakeLists.txt file contained in tests
