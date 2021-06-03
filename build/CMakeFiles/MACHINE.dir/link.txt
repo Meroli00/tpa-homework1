@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\MACHINE.dir/objects.a
-C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin\ar.exe cr CMakeFiles\MACHINE.dir/objects.a @CMakeFiles\MACHINE.dir\objects1.rsp
-C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin\x86_64-w64-mingw32-g++.exe -g -Wl,--whole-archive CMakeFiles\MACHINE.dir/objects.a -Wl,--no-whole-archive -o MACHINE.exe -Wl,--out-implib,libMACHINE.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\MACHINE.dir\linklibs.rsp
