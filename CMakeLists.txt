@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.10)
 project(structure)
 
 # Standard set to 17 to have mandatory RVO
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_FLAGS "-Wa,-mbig-obj -fpermissive")
 
 
 # EXECUTABLE SECTION

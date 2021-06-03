@@ -3101,7 +3101,7 @@ namespace Detail {
         {}
 
         template <typename T, typename = typename std::enable_if<std::is_constructible<double, T>::value>::type>
-        friend bool ope3rator == ( const T& lhs, Approx const& rhs ) {
+        friend bool operator == ( const T& lhs, Approx const& rhs ) {
             auto lhs_v = static_cast<double>(lhs);
             return rhs.equalityComparisonImpl(lhs_v);
         }
