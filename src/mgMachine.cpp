@@ -110,3 +110,15 @@ int mg_compare(mgMachine* machine1, mgMachine* machine2){
        ) {return 0;}
        else {return 1;}
 }
+
+
+void mg_destroyM(mgMachine *catcar)
+{
+
+    if (catcar == NULL)
+        return;
+
+    delete catcar;
+
+    cout << "machine correctly deleted" << endl;
+}
