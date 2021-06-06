@@ -39,9 +39,7 @@ void mg_init_cat(mgCatapult *catapulta)
 int mg_check(mgCatapult *catapulta)
 {
     int val = 0;
-    float alfamax = 90 + atan2f(catapulta->hbox, 700) * 180 / 3.14;
-    float hbmax = 2 * (catapulta->rad);
-    if (catapulta->rad < 20)
+    while (catapulta->rad < 20)
     {
         val = 1;
         cout << "the radius must be grater than 20, otherwise the catapult would touch the flor" << endl;
@@ -89,6 +87,8 @@ int mg_check(mgCatapult *catapulta)
         cout << "all values must be grater than 0" << endl;
         mg_set_alfa(catapulta);
     };
+    float alfamax = 90 + atan2f(catapulta->hbox, 700) * 180 / 3.14;
+    float hbmax = 2 * (catapulta->rad);
     if (catapulta->alfa > alfamax)
     {
         val = 1;

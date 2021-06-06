@@ -1,7 +1,7 @@
 #include "../include/catch2/catch2.hpp"
 #include "../include/mgMachine.h"
 
-TEST_CASE("dovrebbe avere come output 0 perchè le due machine sono uguali","[mgMachine]"){
+TEST_CASE("dovrebbe avere come output 0 perché le due machine sono uguali","[mgMachine]"){
     mgMachine* machine1 = mg_newmachine();
     mgMachine* machine2 = mg_newmachine();
     
@@ -43,16 +43,16 @@ TEST_CASE("dovrebbe avere come output 0 perchè le due machine sono uguali","[mg
     machine1->catap.hbox  = machine2->catap.hbox = 70 ;
     machine1->catap.hbase  = machine2->catap.hbase = 60 ; 
 
-    mg_are_equal(machine1, machine2);
+    mg_compare(machine1, machine2);
 
-    REQUIRE(mg_are_equal(machine1, machine2) == 0);
+    REQUIRE(mg_compare(machine1, machine2) == 0);
 
     delete(machine1);
     delete(machine2);
 }
 
 
-TEST_CASE("dovrebbe avere come output 1 perchè le due machine sono diverse","[mgMachine]"){
+TEST_CASE("dovrebbe avere come output 1 perché le due machine sono diverse","[mgMachine]"){
     mgMachine* machine1 = mg_newmachine();
     mgMachine* machine2 = mg_newmachine();
 
@@ -96,19 +96,11 @@ TEST_CASE("dovrebbe avere come output 1 perchè le due machine sono diverse","[m
     machine1->catap.hbox  = machine2->catap.hbox = 70 ;
     machine1->catap.hbase  = machine2->catap.hbase = 60 ; 
 
-    mg_are_equal(machine1, machine2);
+    mg_compare(machine1, machine2);
 
-    REQUIRE(mg_are_equal(machine1, machine2) == 1);
+    REQUIRE(mg_compare(machine1, machine2) == 1);
 
     delete(machine1);
     delete(machine2);
 }
 
-
-TEST_CASE("dovrebbe eliminare l'oggetto machine","[mgMachine]"){
-    mgMachine* catcar = mg_newmachine();
-
-    mg_destroyM(catcar);
-
-    REQUIRE(catcar == NULL);
-}

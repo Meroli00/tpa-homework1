@@ -58,51 +58,12 @@ bool mg_are_equal(mgMachine* machine1, mgMachine* machine2){
     }
     mg_parse_cat(cat2, &machine2->catap);
     coca_parse_deviceV2(cat2, &machine2->car);
+    if ( mg_compare == 0 ) {return 0;}
+    else {return 1;}
+}
 
-    cout << endl << "TESTTTTTTTTTTTTTTTTTTTT" << endl << endl;
-    cout << machine1->car.cap.x1 << "  ALTRO:  " << machine2->car.cap.x1 << endl;
-    cout <<  machine1->car.cap.x2 << "  ALTRO:  "  << machine2->car.cap.x2 << endl;
-    cout <<   machine1->car.cap.x3 << "  ALTRO:  "  << machine2->car.cap.x3 << endl;  
-    cout <<   machine1->car.cap.x4 << "  ALTRO:  "  << machine2->car.cap.x4 << endl;   
-    cout <<   machine1->car.cap.x5 << "  ALTRO:  "  << machine2->car.cap.x5 << endl;   
-    cout <<   machine1->car.cap.y1 << "  ALTRO:  "  << machine2->car.cap.y1 << endl;   
-    cout <<   machine1->car.cap.y2 << "  ALTRO:  "  << machine2->car.cap.y2 << endl;   
-    cout <<   machine1->car.cap.y3 << "  ALTRO:  "  << machine2->car.cap.y3 << endl;   
-    cout <<   machine1->car.cap.y4 << "  ALTRO:  "  << machine2->car.cap.y4 << endl;   
-    cout <<   machine1->car.cap.y5 << "  ALTRO:  "  << machine2->car.cap.y5 << endl;  
-    
-    cout << machine1->car.car.cx << "  ALTRO:  "  << machine2->car.car.cx << endl;  
-        cout <<  machine1->car.car.cy <<  "  ALTRO:  " <<   machine2->car.car.cy<< endl;   
-        cout <<  machine1->car.car.height <<  "  ALTRO:  " <<   machine2->car.car.height<< endl;   
-        cout <<  machine1->car.car.width <<  "  ALTRO:  " <<   machine2->car.car.width << endl;
 
-        cout <<  machine1->car.dx.centrox <<  "  ALTRO:  " <<   machine2->car.dx.centrox << endl;   
-        cout <<  machine1->car.dx.centroy <<  "  ALTRO:  " <<   machine2->car.dx.centroy << endl;  
-        cout <<  machine1->car.dx.cerchione <<  "  ALTRO:  " <<   machine2->car.dx.cerchione << endl;   
-        //cout <<  machine1->car.dx.ruota <<  "  ALTRO:  " <<   machine2->car.dx.ruota << endl;
-
-        cout <<  machine1->car.fin.p1x <<  "  ALTRO:  " <<   machine2->car.fin.p1x << endl;
-        cout <<  machine1->car.fin.p2x <<  "  ALTRO:  " <<   machine2->car.fin.p2x << endl;  
-        cout <<  machine1->car.fin.p3x <<  "  ALTRO:  " <<   machine2->car.fin.p3x << endl;  
-        cout <<  machine1->car.fin.p1y <<  "  ALTRO:  " <<   machine2->car.fin.p1y << endl;   
-        cout <<  machine1->car.fin.p2y <<  "  ALTRO:  " <<   machine2->car.fin.p2y << endl;   
-        cout <<  machine1->car.fin.p3y <<  "  ALTRO:  " <<   machine2->car.fin.p3y << endl;   
-        
-        cout <<  machine1->car.spoil.heights <<  "  ALTRO:  " <<   machine2->car.spoil.heights << endl;   
-        cout <<  machine1->car.spoil.px <<  "  ALTRO:  " <<   machine2->car.spoil.px << endl;   
-        cout <<  machine1->car.spoil.py <<  "  ALTRO:  " <<   machine2->car.spoil.py << endl;   
-        cout <<  machine1->car.spoil.widths <<  "  ALTRO:  " <<   machine2->car.spoil.widths << endl;   
-        
-        cout <<  machine1->car.sx.centrox <<  "  ALTRO:  " <<   machine2->car.sx.centrox << endl;   
-        cout <<  machine1->car.sx.centroy <<  "  ALTRO:  " <<   machine2->car.sx.centroy << endl;   
-  
-        cout <<  machine1->car.sx.ruota <<  "  ALTRO:  " <<   machine2->car.sx.ruota << endl;  
-         
-        cout <<  machine1->catap.alfa <<  "  ALTRO:  " <<   machine2->catap.alfa << endl;   
-        cout <<  machine1->catap.arm <<  "  ALTRO:  " <<   machine2->catap.arm << endl;   
-        cout <<  machine1->catap.hbox <<  "  ALTRO:  " <<   machine2->catap.hbox  << endl;  
-        cout <<  machine1->catap.hbase <<  "  ALTRO:  " <<   machine2->catap.hbase << endl; 
-
+int mg_compare(mgMachine* machine1, mgMachine* machine2){
     if (
         (machine1->car.cap.x1 == machine2->car.cap.x1)
         &&  (machine1->car.cap.x2 == machine2->car.cap.x2)  
@@ -123,7 +84,7 @@ bool mg_are_equal(mgMachine* machine1, mgMachine* machine2){
         &&  (machine1->car.dx.centrox == machine2->car.dx.centrox)   
         &&  (machine1->car.dx.centroy == machine2->car.dx.centroy)  
         &&  (machine1->car.dx.cerchione == machine2->car.dx.cerchione)   
-        //&&  (machine1->car.dx.ruota == machine2->car.dx.ruota)
+
 
         &&  (machine1->car.fin.p1x == machine2->car.fin.p1x)
         &&  (machine1->car.fin.p2x == machine2->car.fin.p2x)  
@@ -139,28 +100,13 @@ bool mg_are_equal(mgMachine* machine1, mgMachine* machine2){
         
         &&  (machine1->car.sx.centrox == machine2->car.sx.centrox)   
         &&  (machine1->car.sx.centroy == machine2->car.sx.centroy)   
-        //&&  (machine1->car.sx.cerchione == machine2->car.sx.cerchione)   
+
         &&  (machine1->car.sx.ruota == machine2->car.sx.ruota)  
          
         &&  (machine1->catap.alfa == machine2->catap.alfa)   
         &&  (machine1->catap.arm == machine2->catap.arm)   
         &&  (machine1->catap.hbox == machine2->catap.hbox )  
         &&  (machine1->catap.hbase == machine2->catap.hbase) 
-        ) {
-            cout << "debug TRUE" << endl << endl;
-            return 0;
-    }
-    else {
-        return 1;
-    }
-}
-
-void mg_destroyM(mgMachine* machine){
-    
-    if (machine == NULL) return;
-
-    delete machine;
-
-    cout << "machine correctly deleted" << endl; 
-
+       ) {return 0;}
+       else {return 1;}
 }

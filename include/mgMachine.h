@@ -16,8 +16,9 @@ struct mgMachine
 };
 
 std::string mg_machineSVG(mgMachine* catcar);    // compone la stringa che fungerà da svg
-bool mg_are_equal(mgMachine* machine1, mgMachine* machine2);    // controlla se le due machine sono uguali 
+bool mg_are_equal(mgMachine* machine1, mgMachine* machine2);    // chiede quali machine confrontare e chiama mg_compare
 mgMachine* mg_newmachine();     // inizializza un nuovo oggetto mgMachine
 void mg_destroyM(mgMachine* machine);   // cancella la struct 
+int mg_compare(mgMachine* machine1, mgMachine* machine2); // verifica che i singoli campi delle due machine si equivalgano
 
 #endif

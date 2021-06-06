@@ -2,9 +2,10 @@
 #include "../include/mgCatapult.h"
 
 TEST_CASE("mg_check dovrebbe restituire val=0 se i valori sono corretti","[mgCatapult]"){
+    cout << endl << "TEST 1: modify wheel radius and type 40" << endl;
     mgCatapult* catapulta = mg_newcat();
 
-    catapulta->rad = -40;    //negativo
+    catapulta->rad = 0;    //negativo
     catapulta->hbase = 60;  
     catapulta->hbox = 70;
     catapulta->arm = 450;
@@ -16,6 +17,7 @@ TEST_CASE("mg_check dovrebbe restituire val=0 se i valori sono corretti","[mgCat
 }
 
 TEST_CASE("mg_check dovrebbe restituire val=1 per violazione dei vincoli su alfa","[mgCatapult]"){
+    cout << endl << "TEST 2: modify the launch angle and type 95 or less" << endl;
     mgCatapult* catapulta = mg_newcat();
 
     catapulta->rad = 40;
@@ -30,6 +32,7 @@ TEST_CASE("mg_check dovrebbe restituire val=1 per violazione dei vincoli su alfa
 }
 
 TEST_CASE("mg_check dovrebbe restituire val=1 per violazione dei vincoli su hbase","[mgCatapult]"){
+    cout << endl << "TEST 3: modify base hight and type 60" << endl;
     mgCatapult* catapulta = mg_newcat();
 
     catapulta->rad = 40;
@@ -44,6 +47,7 @@ TEST_CASE("mg_check dovrebbe restituire val=1 per violazione dei vincoli su hbas
 }
 
 TEST_CASE("mg_check dovrebbe restituire val=1 per violazione dei vincoli su rad","[mgCatapult]"){
+    cout << endl << "TEST 4: modify wheel raius and type 40" << endl;
     mgCatapult* catapulta = mg_newcat();
 
     catapulta->rad = -40;    //negativo
@@ -57,10 +61,3 @@ TEST_CASE("mg_check dovrebbe restituire val=1 per violazione dei vincoli su rad"
     delete(catapulta);
 }
 
-TEST_CASE("dovrebbe eliminare l'oggetto catapulta","[mgCatapult]"){
-    mgCatapult* catapulta = mg_newcat();
-
-    mg_destroy(catapulta);
-
-    REQUIRE(catapulta == NULL);
-}
