@@ -41,6 +41,7 @@ string mg_machineSVG(mgMachine* catcar){
 
 bool mg_are_equal(mgMachine* machine1, mgMachine* machine2){
     string cat1, cat2;
+    cout << "First machine:" << endl;
     cat1 = mg_file_r();
     while (cat1 == ""){
         cout << "Try again" << endl << endl;
@@ -50,6 +51,7 @@ bool mg_are_equal(mgMachine* machine1, mgMachine* machine2){
     mg_parse_cat(cat1, &machine1->catap);
     coca_parse_deviceV2(cat1, &machine1->car);
     
+    cout << "Second machine:" << endl;
     cat2 = mg_file_r();
     while (cat1 == ""){
         cout << "Try again" << endl << endl;
@@ -58,7 +60,7 @@ bool mg_are_equal(mgMachine* machine1, mgMachine* machine2){
     }
     mg_parse_cat(cat2, &machine2->catap);
     coca_parse_deviceV2(cat2, &machine2->car);
-    if ( mg_compare == 0 ) {return 0;}
+    if ( mg_compare(machine1,machine2) == 0 ) {return 0;}
     else {return 1;}
 }
 

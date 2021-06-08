@@ -215,7 +215,7 @@ void mg_file_w(string cat)
         cin >> filew;
 
         // Create and open a text file
-        ofstream MyFile("svg/" + filew);
+        ofstream MyFile("../svg/" + filew);
 
         // Write to the file
         MyFile << cat;
@@ -230,7 +230,7 @@ string mg_file_r()
     string newstring, nuovastringa;
     int status;
     char target[95];
-    char directory[100] = "svg/";
+    char directory[100] = "../svg/";
     cout << "Type file name (es: catcatapult.svg)" << endl;
     cin >> target;
     strcat(directory, target);
@@ -266,7 +266,7 @@ void mg_file_delete()
 {
     int status;
     char target[95];
-    char directory[100] = "svg/";
+    char directory[100] = "../svg/";
     cout << "Enter the Name of File you want to delete: ";
     cin >> target;
     strcat(directory, target);

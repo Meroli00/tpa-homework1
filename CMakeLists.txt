@@ -23,7 +23,7 @@ target_sources(MACHINE PRIVATE src/mgMachine.cpp)
 target_sources(MACHINE PRIVATE src/Car.cpp)
 target_link_libraries(MACHINE)
 
-file(COPY svg DESTINATION ${CMAKE_BINARY_DIR}) #copia la cartella svg all'interno della cartella build
+# file(COPY svg DESTINATION ${CMAKE_BINARY_DIR}) #copia la cartella svg all'interno della cartella build
 
 # TESTS SECTION
 # Basically makes CMake read the CMakeLists.txt file contained in tests

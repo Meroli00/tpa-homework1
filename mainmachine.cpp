@@ -1,6 +1,6 @@
-#include "include\mgMachine.h"
-#include "include\Car.h"
-#include "include\mgCatapult.h"
+#include "include/mgMachine.h"
+#include "include/Car.h"
+#include "include/mgCatapult.h"
 #include <iostream>
 #include <string>
 #include <csignal>
@@ -12,8 +12,8 @@ int main()
 
     int risp;
     string cat = "";
-    mgCatapult *catapulta;
-    catapulta = mg_newcat();
+    mgCatapult *catapulta = mg_newcat();
+    
 
     int menu, icheck = 0;
     string svg;
@@ -24,9 +24,7 @@ int main()
     int *px = &x;
     int *check = &icheck;
 
-    mgMachine *lanciamacc;
-    mgMachine machine;
-    lanciamacc = &machine;
+    mgMachine *lanciamacc = mg_newmachine();
 
     while (risp != 8)
     {
@@ -112,9 +110,7 @@ int main()
         }
         case 6:
         {
-            cout << "First machine:" << endl;
             mgMachine *machine1 = mg_newmachine();
-            cout << "Second machine:" << endl;
             mgMachine *machine2 = mg_newmachine();
             if (mg_are_equal(machine1, machine2) == 0)
             {
@@ -126,6 +122,8 @@ int main()
                 cout << endl
                      << "The 2 machines selected are different" << endl;
             }
+            mg_destroyM(machine1);
+            mg_destroyM(machine2);
             break;
         }
         case 7:

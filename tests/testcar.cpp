@@ -36,24 +36,6 @@ TEST_CASE("coca_check_car dovrebbe ritornare 0 se è rispettato il rapporto widt
     delete(macch);    
 }
 
-// test sulla funzione coca_check_posizionex
-TEST_CASE("coca_check_posizionex dovrebbe ritornare 1 se non è rispettata l'impaginazione nella coordinata x", "[car]") {
-    
-    coca_device* macch = coca_init();
-
-    macch->dimensionex = SFONDOX;
-    macch->dimensioney = SFONDOY;
-
-    macch->car.width = 350;
-    macch->car.height = 80;
-
-    macch->car.cx = 600;
-    macch->car.cy = (macch->dimensioney/2) - (macch->car.height/2);
-
-    REQUIRE(coca_check_posizionex(macch) == 1);
-
-    delete(macch);    
-}
 
 TEST_CASE("coca_check_posizionex dovrebbe ritornare 0 se è rispettata l'impaginazione nella coordinata x", "[car]") {
     
@@ -198,48 +180,6 @@ TEST_CASE("coca_cin_carrozzeria dovrebbe inizializzare a 1 la variabile check se
     delete(macch);    
 }
 
-// test sulla funzione coca_cin_posizione
-TEST_CASE("coca_cin_posizione dovrebbe inizializzare a 2 la variabile check se non sono rispettati i vincoli sulla posizione x", "[car]") {
-    
-    int icheck, scelta;
-    int* check = &icheck;
-    int* pscelta = &scelta;
-    coca_device* macch = coca_init();
-    macch->dimensionex = SFONDOX;
-    macch->dimensioney = SFONDOY;
-    macch->car.width = 350;
-    macch->car.height = 80;
-    std::cout << "REQUIRE: IMMETTERE I SEGUENTI VALORI:" << std::endl;
-    std::cout << "SCELTA: 1" << std::endl;
-    std::cout << "POSIZIONE X: 700" << std::endl;
-    std::cout << "POSIZIONE Y: 260" << std::endl;
-    macch = coca_cin_posizione(macch, pscelta, check);
-
-    REQUIRE(icheck == 2);
-
-    delete(macch);    
-}
-
-TEST_CASE("coca_cin_posizione dovrebbe inizializzare a 2 la variabile check se non sono rispettati i vincoli sulla posizione y", "[car]") {
-    
-    int icheck, scelta;
-    int* check = &icheck;
-    int* pscelta = &scelta;
-    coca_device* macch = coca_init();
-    macch->dimensionex = SFONDOX;
-    macch->dimensioney = SFONDOY;
-    macch->car.width = 350;
-    macch->car.height = 80;
-    std::cout << "REQUIRE: IMMETTERE I SEGUENTI VALORI:" << std::endl;
-    std::cout << "SCELTA: 1" << std::endl;
-    std::cout << "POSIZIONE X: 225" << std::endl;
-    std::cout << "POSIZIONE Y: 550" << std::endl;
-    macch = coca_cin_posizione(macch, pscelta, check);
-
-    REQUIRE(icheck == 2);
-
-    delete(macch);    
-}
 
 // test sulla funzione coca_cin_ruote
 TEST_CASE("coca_cin_ruote dovrebbe inizializzare a 3 la variabile check se non sono rispettati i vincoli sui cerchioni", "[car]") {
@@ -361,45 +301,6 @@ TEST_CASE("coca_try_device dovrebbe ritornare un puntatore a un device != NULL",
     macch = coca_try_device(macch, scelta, diametro, x);
 
     REQUIRE(macch != NULL);
-
-    delete(macch);    
-}
-
-// test sulla funzione coca_intestazione
-TEST_CASE("coca_intestazione dovrebbe ritornare una stringa != "" ", "[car]") {
-    
-    std::string svg;
-    coca_device* macch = coca_init();
-
-    svg = coca_intestazione(macch);
-
-    REQUIRE(svg != "");
-
-    delete(macch);    
-}
-
-// test sulla funzione coca_sfondo
-TEST_CASE("coca_sfondo dovrebbe ritornare una stringa != "" ", "[car]") {
-    
-    std::string svg;
-    coca_device* macch = coca_init();
-
-    svg = coca_sfondo(macch);
-
-    REQUIRE(svg != "");
-
-    delete(macch);    
-}
-
-// test sulla funzione coca_fine
-TEST_CASE("coca_fine dovrebbe ritornare una stringa != "" ", "[car]") {
-    
-    std::string svg;
-    coca_device* macch = coca_init();
-
-    svg = coca_fine();
-
-    REQUIRE(svg != "");
 
     delete(macch);    
 }

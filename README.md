@@ -10,7 +10,7 @@ Its variable parameters are:
 - hight of the structure holding the arm
 - hight of the base
 
-![](https://github.com/MuttiGiacomo/tpa-homework1/blob/main/Catapult_legenda.svg)
+![](https://github.com/MuttiGiacomo/tpa-homework1/blob/main/svg/Catapult_legenda.svg)
 
 Based uppon the variables stated above there are several constraints:
 - all dimensions must be > 0 and < of a certain max value
@@ -22,4 +22,4 @@ Based uppon the variables stated above there are several constraints:
 The user will be able to configure both car and catapult.
 The result will bee a svg file such as:
 
-![](https://github.com/MuttiGiacomo/tpa-homework1/blob/main/machineNC.svg)
+![](https://github.com/MuttiGiacomo/tpa-homework1/blob/main/svg/machineNC.svg)
