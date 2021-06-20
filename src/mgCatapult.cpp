@@ -5,6 +5,7 @@
 #include <string>
 #include <cstring>
 
+
 #define _USE_MATH_DEFINES
 
 using namespace std;
@@ -15,155 +16,125 @@ mgCatapult *mg_newcat()
     return new_cat;
 }
 
-void mg_init_cat(mgCatapult *catapulta)
-{
-
+void mg_start(mgCatapult* catapulta){
+    double a,b,c,d,e;
     cout << "define wheel radius ( 20 - 100 ): ";
-    cin >> catapulta->rad;
+    cin >> a;
+    mg_set_rad(catapulta,a);
     cout << "define bed hight ( wheel radius - wheel diameter): ";
-    cin >> catapulta->hbase;
+    cin >> b;
+    mg_set_hbase(catapulta,b);
     cout << "define box hight ( 0 - 100 ): ";
-    cin >> catapulta->hbox;
+    cin >> c;
+    mg_set_hbox(catapulta,c);
     cout << "define arm length: ( 100 - 500 ) ";
-    cin >> catapulta->arm;
+    cin >> d;
+    mg_set_arm(catapulta,d);
     cout << "define launch angle ( > 0 ): ";
-    cin >> catapulta->alfa;
+    cin >> e;
+    mg_set_alfa(catapulta,e);
 
-    if (mg_check(catapulta))
-    {
-        cout << "The set values are correct, a .svg file can be created" << endl;
-        return;
-    }
+    mg_error_sig(catapulta);
 }
 
-int mg_check(mgCatapult *catapulta)
-{
-    int val = 0;
-    while (catapulta->rad < 20)
-    {
-        val = 1;
-        cout << "the radius must be grater than 20, otherwise the catapult would touch the flor" << endl;
-        mg_set_rad(catapulta);
-    };
-    if (catapulta->rad > 100)
-    {
-        val = 1;
-        cout << "the radius is too big (max value = 80)" << endl;
-        mg_set_rad(catapulta);
-    };
-    if (catapulta->hbox < 0)
-    {
-        val = 1;
-        cout << "all values must be grater than 0" << endl;
-        mg_set_hbox(catapulta);
-    };
-    if (catapulta->hbox > 100)
-    {
-        val = 1;
-        cout << "the hight of the box is too big (max value = 100)" << endl;
-        mg_set_hbox(catapulta);
-    };
-    if (catapulta->hbase < catapulta->rad)
-    {
-        val = 1;
-        cout << "the hight of the base must be grater than the wheel radius" << endl;
-        mg_set_hbase(catapulta);
-    };
-    if (catapulta->arm < 100)
-    {
-        val = 1;
-        cout << "the arm must be a bit longer than its object holder (min value = 100)" << endl;
-        mg_set_arm(catapulta);
-    };
-    if (catapulta->arm > 500)
-    {
-        val = 1;
-        cout << "the arm can't be longer than the base (max value = 500)" << endl;
-        mg_set_arm(catapulta);
-    };
-    if (catapulta->alfa < 0)
-    {
-        val = 1;
-        cout << "all values must be grater than 0" << endl;
-        mg_set_alfa(catapulta);
-    };
+
+void mg_set_rad(mgCatapult *catapulta, double a){
+    catapulta->rad = a;
+}
+void mg_set_hbase(mgCatapult *catapulta, double b){
+    catapulta->hbase = b;
+}
+void mg_set_hbox(mgCatapult *catapulta, double c){
+    catapulta->hbox = c;
+}
+void mg_set_arm(mgCatapult *catapulta, double d){
+    catapulta->arm = d;
+}
+void mg_set_alfa(mgCatapult *catapulta, double e){
+    catapulta->alfa = e;
+}
+
+
+int mg_check_rad(mgCatapult *catapulta){
+    if ((catapulta->rad < 20) || (catapulta->rad > 100)){
+        return 1;
+    } else {return 0;}
+}
+int mg_check_hbox(mgCatapult *catapulta){
+    if (catapulta->hbox < 0 || catapulta->hbox > 100){
+        return 1;
+    } else {return 0;}
+}
+int mg_check_hbase(mgCatapult *catapulta){
+    if (catapulta->hbase < catapulta->rad || catapulta->hbase > 2*catapulta->rad){
+        return 1;
+    } else {return 0;}
+}
+int mg_check_arm(mgCatapult *catapulta){
+    if (catapulta->arm < 100 || catapulta->arm > 500){
+        return 1;
+    } else {return 0;}
+}
+int mg_check_alfa(mgCatapult *catapulta){
     float alfamax = 90 + atan2f(catapulta->hbox, 700) * 180 / 3.14;
-    float hbmax = 2 * (catapulta->rad);
-    if (catapulta->alfa > alfamax)
-    {
-        val = 1;
-        cout << "the angle of launch is too big, it should be less than " << alfamax << endl;
-        mg_set_alfa(catapulta);
-    };
-    if (catapulta->hbase > hbmax)
-    {
-        val = 1;
+    if ((catapulta->alfa < 0) || (catapulta->alfa > alfamax)){
+        return 1;
+    } else {return 0;}
+}
+
+int mg_tot_check(mgCatapult* catapulta){
+if ( mg_check_rad(catapulta)==0 &&     
+    mg_check_hbase(catapulta)==0 &&   
+    mg_check_hbox(catapulta)==0 &&    
+    mg_check_arm(catapulta)==0 &&        
+    mg_check_alfa(catapulta)==0){return 0;}
+    else {return 1; }
+}
+
+void mg_error_sig(mgCatapult* catapulta){
+
+    while(mg_check_rad(catapulta) != 0){
+        double newval;
+        cout << "the radius must be between 20 and 100" << endl;
+        cout << "choose a new value: ";
+        cin >> newval;
+        mg_set_rad(catapulta,newval);
+    }
+
+    while(mg_check_hbox(catapulta) != 0){
+        double newval;
+        cout << "the hight of the box must be between 0 and 100" << endl;
+        cout << "choose a new value: ";
+        cin >> newval;
+        mg_set_hbox(catapulta,newval);
+    }
+
+    while(mg_check_hbase(catapulta) != 0){
+        double newval;
         int k;
-        cout << "either the radius is too small or the the base is too high, change at least one parameter " << endl;
-        do
-        {
-            cout << "digit [1] to modify the radius, [2] to modify the base hight" << endl;
-            cin >> k;
-            if (k == 1)
-            {
-                mg_set_rad(catapulta);
-            }
-            if (k == 2)
-            {
-                mg_set_hbase(catapulta);
-            }
-        } while (k != 1 & k != 2);
-        k = 0;
-    };
-    return val;
-}
+        double m;
+        cout << "the hight of the base must be between " << catapulta->rad << " and " << 2*catapulta->rad << endl;
+        cout << "choose a new value: ";
+        cin >> m;
+        mg_set_hbase(catapulta,m);
+    }
 
-void mg_set_rad(mgCatapult *catapulta)
-{
-    cout << "choose a new value for the wheel radius: ";
-    cin >> catapulta->rad;
-    do
-    {
-        mg_check(catapulta);
-    } while (mg_check(catapulta) != 0);
-}
+    while(mg_check_arm(catapulta) != 0){
+        double newval;
+        cout << "the length of rhe arm must be between 100 and 500" << endl;
+        cout << "choose a new value: ";
+        cin >> newval;
+        mg_set_arm(catapulta,newval);
+    }
 
-void mg_set_hbase(mgCatapult *catapulta)
-{
-    cout << "choose a new value for the higth of the: ";
-    cin >> catapulta->hbase;
-    do
-    {
-        mg_check(catapulta);
-    } while (mg_check(catapulta) != 0);
-}
-
-void mg_set_hbox(mgCatapult *catapulta)
-{
-    cout << "choose a new value for the higth of box: ";
-    cin >> catapulta->hbox;
-    do
-    {
-        mg_check(catapulta);
-    } while (mg_check(catapulta) != 0);
-}
-void mg_set_arm(mgCatapult *catapulta)
-{
-    cout << "choose a new value for the arm length: ";
-    cin >> catapulta->arm;
-    do
-    {
-        mg_check(catapulta);
-    } while (mg_check(catapulta) != 0);
-}
-void mg_set_alfa(mgCatapult *catapulta)
-{
-    cout << "choose a new value for the launch angle: ";
-    cin >> catapulta->alfa;
-    do
-    {
-        mg_check(catapulta);
-    } while (mg_check(catapulta) != 0);
+    while(mg_check_alfa(catapulta) != 0){
+        double newval;
+        float alfamax = 90 + atan2f(catapulta->hbox, 700) * 180 / 3.14;
+        cout << "the angle of launch must be between 0 and " << alfamax << endl;
+        cout << "choose a new value: ";
+        cin >> newval;
+        mg_set_alfa(catapulta,newval);
+    }
 }
 
 string mg_catSVG(mgCatapult *catapulta, int with_measures)

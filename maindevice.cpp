@@ -29,8 +29,8 @@ int main(){
         {
         case 1:
             int with_measures;
-            mg_init_cat(catapulta);
-             while( with_measures!=1 && with_measures!=2 ){
+            mg_start(catapulta);
+            while( with_measures!=1 && with_measures!=2 ){
                 cout << "Select an option:" << endl;
                 cout << "[1] svg without mesures" << endl;
                 cout << "[2] svg with mesures" << endl;
@@ -57,7 +57,7 @@ int main(){
                     cout << "[1] Yes , [2] No" << endl;
                     cin >> r ;
                     if (r == 1){
-                     mg_init_cat(catapulta);
+                     mg_start(catapulta);
                     }
                 }
             r=0;

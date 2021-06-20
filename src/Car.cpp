@@ -7,7 +7,7 @@ using namespace std;
 #include <sstream>
 #include <cmath>
 #include "../include/Car.h"
-#include "mgCatapult.h"
+#include "../include/mgCatapult.h"
 
 // funzione che inizializza una struct device
 coca_device *coca_init()

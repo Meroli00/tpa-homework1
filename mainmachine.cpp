@@ -57,7 +57,7 @@ int main()
                     macch = coca_try_device(macch, scelta, diametro, x);
                     lanciamacc->car = *macch;
                     cout << "Catapult initialization" << endl;
-                    mg_init_cat(catapulta);
+                    mg_start(catapulta);
                     lanciamacc->catap = *catapulta;
                     cat = mg_machineSVG(lanciamacc);
                 };
