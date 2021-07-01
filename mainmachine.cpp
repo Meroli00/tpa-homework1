@@ -26,17 +26,18 @@ int main()
 
     mgMachine *lanciamacc = mg_newmachine();
 
-    while (risp != 8)
+    while (risp != 9)
     {
         cout << "Choose an option:" << endl;
         cout << "[1] Create a new machine" << endl;
         cout << "[2] Save machine as a svg file" << endl;
-        cout << "[3] Load a file" << endl;
-        cout << "[4] delete a file" << endl;
-        cout << "[5] print the current svg file text" << endl;
-        cout << "[6] check if 2 machines are the same" << endl;
-        cout << "[7] delete current string and restart" << endl;
-        cout << "[8] Exit the program" << endl;
+        cout << "[3] Create an array of catapults" << endl;
+        cout << "[4] Load a file" << endl;
+        cout << "[5] delete a file" << endl;
+        cout << "[6] print the current svg file text" << endl;
+        cout << "[7] check if 2 machines are the same" << endl;
+        cout << "[8] delete current string and restart" << endl;
+        cout << "[9] Exit the program" << endl;
 
         cin >> risp;
         switch (risp)
@@ -84,6 +85,40 @@ int main()
         }
         case 3:
         {
+            int n = 0;
+            while( n<=0 ){
+                cout << "How many catapults do you want in your army?" << endl;
+                cin >> n;
+            }
+            mgMachine** arr;    // notare doppio asterisco
+    
+            arr = new mgMachine* [n];  // notare asterisco dopo MyDevice
+            
+            for( int i=0 ; i<n ; i++){
+                mgCatapult *catapulta = mg_newcat();
+                coca_device *macch = coca_init();
+                mgMachine *lanciamacc = mg_newmachine();
+                cout << "Car initialization" << endl;
+                macch = coca_cin_device(macch, pscelta, pdiametro, px, check);
+                macch = coca_try_device(macch, scelta, diametro, x);
+                lanciamacc->car = *macch;
+                cout << "Catapult initialization" << endl;
+                mg_start(catapulta);
+                lanciamacc->catap = *catapulta;
+                cout << endl;
+
+                arr[i] = lanciamacc;
+            }
+            cat = mg_machine_arraySVG(arr,n);
+            for ( int i=0 ; i<n ; i++){
+                delete arr[i];
+            }
+            delete[] arr;
+            
+            break;
+        }
+        case 4:
+        {
             cat = mg_file_r();
             while (cat == "")
             {
@@ -93,12 +128,12 @@ int main()
             }
             break;
         }
-        case 4:
+        case 5:
         {
             mg_file_delete();
             break;
         }
-        case 5:
+        case 6:
         {
             cout << "the current svg text is: " << endl;
             if (cat == "")
@@ -108,7 +143,7 @@ int main()
             cout << cat;
             break;
         }
-        case 6:
+        case 7:
         {
             mgMachine *machine1 = mg_newmachine();
             mgMachine *machine2 = mg_newmachine();
@@ -126,12 +161,12 @@ int main()
             mg_destroyM(machine2);
             break;
         }
-        case 7:
+        case 8:
         {
             cat = "";
             break;
         }
-        case 8:
+        case 9:
         {
             mg_destroyM(lanciamacc);
 

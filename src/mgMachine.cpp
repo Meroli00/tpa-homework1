@@ -14,6 +14,8 @@ mgMachine* mg_newmachine(){
     return new_machine;
 }
 
+
+
 string mg_machineSVG(mgMachine* catcar){
     string cat;
     //catapulta
@@ -123,4 +125,38 @@ void mg_destroyM(mgMachine *catcar)
     delete catcar;
 
     cout << "machine correctly deleted" << endl;
+}
+
+string mg_machine_arraySVG(mgMachine** arr, int n){
+    string cat;
+    
+    cat = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" + to_string(800*n) + "\" height=\"600\">\n\n"; // intestazione
+    cat += "<rect x=\"0\" y=\"0\" width=\" " + to_string(800*n) + " \" height=\"600\" style=\"fill:white;stroke:white;stroke-width:2\" />\n"; // sfondo bianco
+
+    for( int i=0 ; i<n ; i++){
+        //catapulta        
+        cat += "<a transform=\"translate(" + to_string(700*i) + ",0)\">\n";
+        
+        cat += "<rect x=\"250\" y=\"" + to_string(450 + arr[i]->catap.rad - arr[i]->catap.hbase) + "\" width=\"500\" height=\"20\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n\n"; // base
+        cat += "<g transform=\"rotate(" + to_string( 90 - arr[i]->catap.alfa) + ",600," + to_string(450 + arr[i]->catap.rad - arr[i]->catap.hbase - (arr[i]->catap.hbox/2)) + ")\">\n"; // sdr ruotato
+        cat += "<rect x=\"" + to_string(610 - arr[i]->catap.arm) + "\" y=\"" + to_string(440 + arr[i]->catap.rad - arr[i]->catap.hbase - (arr[i]->catap.hbox/2)) + "\" width=\"" + to_string(arr[i]->catap.arm) + "\" height=\"20\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // braccio
+        cat += "<rect x=\"" + to_string(610 - arr[i]->catap.arm) + "\" y=\"" + to_string(425 + arr[i]->catap.rad - arr[i]->catap.hbase - (arr[i]->catap.hbox/2)) + "\" width=\"80\" height=\"35\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // estremita braccio
+        cat += "</g>\n";
+        cat += "<rect x=\"500\" y=\"" + to_string(450 + arr[i]->catap.rad - arr[i]->catap.hbase - arr[i]->catap.hbox) + "\" width=\"200\" height=\"" + to_string(arr[i]->catap.hbox) + "\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n";// cassone
+        cat += "<circle cx=\"350\" cy=\"450\" r=\"" + to_string(arr[i]->catap.rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n\n"; // ruota sx
+        cat += "<circle cx=\"650\" cy=\"450\" r=\"" + to_string(arr[i]->catap.rad) + "\" stroke=\"black\" stroke-width=\"9\" fill=\"#a5532a\" />\n"; // ruota dx
+        cat += "<circle cx=\"600\" cy=\"" + to_string(450 + arr[i]->catap.rad - arr[i]->catap.hbase - (arr[i]->catap.hbox/2)) + "\" r=\"3\" stroke=\"black\" stroke-width=\"5\" fill=\"white\" />\n"; // perno del braccio
+
+        //macchina
+        cat += "<g transform=\"rotate(" + to_string( 90 - arr[i]->catap.alfa) + ",600," + to_string(450 + arr[i]->catap.rad - arr[i]->catap.hbase - (arr[i]->catap.hbox/2)) + ") translate(" + to_string(550 - arr[i]->catap.arm) + "," + to_string(330 + arr[i]->catap.rad - arr[i]->catap.hbase - (arr[i]->catap.hbox/2)) + ") scale(0.25)\">\n";
+        cat += coca_strg_device(&arr[i]->car, 1, 0);
+        cat += "</g>\n";
+        cat += "</a>\n";     
+
+    }
+
+    cat += "</svg>\n";
+
+    return cat;
+    
 }

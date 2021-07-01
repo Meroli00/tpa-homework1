@@ -23,3 +23,8 @@ The user will be able to configure both car and catapult.
 The result will bee a svg file such as:
 
 ![](https://github.com/MuttiGiacomo/tpa-homework1/blob/main/svg/machineNC.svg)
+
+There is also the possibility to combine multiple machines 
+creating an array of catapults
+
+![](https://github.com/MuttiGiacomo/tpa-homework1/blob/main/svg/machine-array.svg)
