@@ -127,16 +127,19 @@ void mg_destroyM(mgMachine *catcar)
     cout << "machine correctly deleted" << endl;
 }
 
-string mg_machine_arraySVG(mgMachine** arr, int n){
+string mg_machine_arraySVG(mgMachine** arr, int n, coca_device** car_arr, int k){
     string cat;
     
-    cat = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" + to_string(800*n) + "\" height=\"600\">\n\n"; // intestazione
-    cat += "<rect x=\"0\" y=\"0\" width=\" " + to_string(800*n) + " \" height=\"600\" style=\"fill:white;stroke:white;stroke-width:2\" />\n"; // sfondo bianco
+    cat = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" + to_string(800*n + 500*k) + "\" height=\"600\">\n\n"; // intestazione
+    cat += "<rect x=\"0\" y=\"0\" width=\" " + to_string(800*n + 500*k) + " \" height=\"600\" style=\"fill:white;stroke:white;stroke-width:2\" />\n"; // sfondo bianco
 
     for( int i=0 ; i<n ; i++){
         //catapulta        
         cat += "<a transform=\"translate(" + to_string(700*i) + ",0)\">\n";
-        
+        if (i != n-1){
+            cat += "<line x1=\" " + to_string(750) + " \" y1=\" " + to_string(450 + 10 + arr[i]->catap.rad - arr[i]->catap.hbase) + " \" x2=\" ";
+            cat += "" + to_string(1050) + " \" y2=\" " + to_string(450 + 10 + arr[i+1]->catap.rad - arr[i+1]->catap.hbase) + " \" style=\"stroke:rgb(0,0,0);stroke-width:1\" />\n";
+        }
         cat += "<rect x=\"250\" y=\"" + to_string(450 + arr[i]->catap.rad - arr[i]->catap.hbase) + "\" width=\"500\" height=\"20\" style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n\n"; // base
         cat += "<g transform=\"rotate(" + to_string( 90 - arr[i]->catap.alfa) + ",600," + to_string(450 + arr[i]->catap.rad - arr[i]->catap.hbase - (arr[i]->catap.hbox/2)) + ")\">\n"; // sdr ruotato
         cat += "<rect x=\"" + to_string(610 - arr[i]->catap.arm) + "\" y=\"" + to_string(440 + arr[i]->catap.rad - arr[i]->catap.hbase - (arr[i]->catap.hbox/2)) + "\" width=\"" + to_string(arr[i]->catap.arm) + "\" height=\"20\" 	style=\"fill:#a5532a;stroke:black;stroke-width:2\" />\n"; // braccio
@@ -152,7 +155,26 @@ string mg_machine_arraySVG(mgMachine** arr, int n){
         cat += coca_strg_device(&arr[i]->car, 1, 0);
         cat += "</g>\n";
         cat += "</a>\n";     
+    }
 
+    double pos = 800*n + 50;
+
+    if (k != 0){
+        cat += "<line x1=\" " + to_string(700*(n-1) + 750) + " \" y1=\" " + to_string(450 + 10 + arr[n-1]->catap.rad - arr[n-1]->catap.hbase) + " \" x2=\" ";
+        cat += "" + to_string( pos + 200 ) + " \" y2=\" " + to_string( 460 - car_arr[0]->dx.ruota/8 - car_arr[0]->car.height/8 ) + " \" style=\"stroke:rgb(0,0,0);stroke-width:1\" />\n";
+    }
+    
+
+    for( int i=0 ; i<k ; i++){      //ciclo per aggiungere le macchine che trainano
+        cat += "<g transform=\" translate(" + to_string( pos ) + "," + to_string(420 - car_arr[i]->dimensioney/5) + ") scale(0.5)\">\n";
+        pos += car_arr[i]->car.width + 50; // aggiorno posizione prossima macchina
+
+        if ( i < k-1 ){
+            cat += "<line x1=\" " + to_string( car_arr[i]->dimensionex/2) + " \" y1=\" " + to_string(450 - car_arr[i]->dimensioney/4) + " \" x2=\" \n";
+            cat += "" + to_string(car_arr[i+1]->dimensionex + car_arr[i]->car.width + 50) + " \" y2=\" " + to_string(450 - car_arr[i+1]->dimensioney/4) + " \" style=\"stroke:rgb(0,0,0);stroke-width:1\" />\n";
+        }
+        cat += coca_strg_device(car_arr[i], 1, 0);
+        cat += "</g>\n"; 
     }
 
     cat += "</svg>\n";

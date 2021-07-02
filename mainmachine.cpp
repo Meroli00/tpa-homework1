@@ -31,7 +31,7 @@ int main()
         cout << "Choose an option:" << endl;
         cout << "[1] Create a new machine" << endl;
         cout << "[2] Save machine as a svg file" << endl;
-        cout << "[3] Create an array of catapults" << endl;
+        cout << "[3] Create a line of X catapults towed by Y cars" << endl;
         cout << "[4] Load a file" << endl;
         cout << "[5] delete a file" << endl;
         cout << "[6] print the current svg file text" << endl;
@@ -90,9 +90,9 @@ int main()
                 cout << "How many catapults do you want in your army?" << endl;
                 cin >> n;
             }
-            mgMachine** arr;    // notare doppio asterisco
+            mgMachine** arr;
     
-            arr = new mgMachine* [n];  // notare asterisco dopo MyDevice
+            arr = new mgMachine* [n];
             
             for( int i=0 ; i<n ; i++){
                 mgCatapult *catapulta = mg_newcat();
@@ -109,11 +109,37 @@ int main()
 
                 arr[i] = lanciamacc;
             }
-            cat = mg_machine_arraySVG(arr,n);
+
+            int k = 0;
+            while( k<=0 ){
+                cout << "How many cars do you want to tawe your catapults?" << endl;
+                cin >> k;
+            }
+            coca_device** car_arr;
+    
+            car_arr = new coca_device* [k];
+            
+            for( int i=0 ; i<k ; i++){
+                coca_device *macch = coca_init();
+                cout << "Car initialization" << endl;
+                macch = coca_cin_device(macch, pscelta, pdiametro, px, check);
+                macch = coca_try_device(macch, scelta, diametro, x);
+
+                cout << endl;
+
+                car_arr[i] = macch;
+            }
+
+            cat = mg_machine_arraySVG(arr,n,car_arr,k);
+
             for ( int i=0 ; i<n ; i++){
                 delete arr[i];
             }
             delete[] arr;
+            for ( int i=0 ; i<k ; i++){
+                delete car_arr[i];
+            }
+            delete[] car_arr;
             
             break;
         }
