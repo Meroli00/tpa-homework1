@@ -190,6 +190,7 @@ int main()
         case 8:
         {
             cat = "";
+            cout << "string coorectly deleted" << endl;
             break;
         }
         case 9:

@@ -121,10 +121,10 @@ void mg_destroyM(mgMachine *catcar)
 
     if (catcar == NULL)
         return;
-
+        
     delete catcar;
 
-    cout << "machine correctly deleted" << endl;
+    cout << "machine correctly deallocated" << endl;
 }
 
 string mg_machine_arraySVG(mgMachine** arr, int n, coca_device** car_arr, int k){
